@@ -123,6 +123,25 @@ Node *floor_BST(Node *root , int ele){
 }
 
 
+Node *ceil_BST( Node *root , int ele){
+    Node *ceil = NULL;
+    Node *temp = root;
+    while(1){
+        //cout << "lol " << temp->key << endl;
+        if(temp->key >ele){ ceil = temp;
+        if(temp->left != NULL){ temp = temp->left;}
+        else{break;}
+        }
+        else if(temp->key == ele){ceil = temp; break;}
+        else {
+        if(temp->right != NULL) temp = temp->right;
+        else break;
+        }
+        
+    }
+    return ceil;
+}
+
 
 int main(){
 
@@ -143,8 +162,8 @@ root->left->right->right->right->right = new Node(55);
 
 
 
-Node *floor = floor_BST(root,98);
+Node *ceil = ceil_BST(root,44);
 
-cout<< floor->key << endl;
+cout<< ceil->key << endl;
 
 }
