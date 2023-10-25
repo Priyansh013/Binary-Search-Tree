@@ -106,6 +106,23 @@ Node *Delete(Node *root , int ele){
 
 
 
+Node *floor_BST(Node *root , int ele){
+    Node *floor = NULL;
+    Node *temp = root;
+    while(1){
+        if(temp->key > ele){ if(temp->left != NULL){ temp = temp->left;} 
+            else break;
+         }
+        else if( temp->key == ele){ floor = temp ; break;}
+        else if ( temp->key < ele){floor = temp;
+        if(temp->right != NULL){ temp = temp->right;}
+        else{break;}
+        }
+    }
+    return floor;
+}
+
+
 
 int main(){
 
@@ -125,7 +142,9 @@ root->left->right->right->right->right = new Node(55);
 
 
 
-LevelOrder(root);
 
+Node *floor = floor_BST(root,98);
+
+cout<< floor->key << endl;
 
 }
