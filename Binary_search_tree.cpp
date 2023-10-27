@@ -160,6 +160,25 @@ bool check_BST(Node *root){
 }
 
 
+void vertical_sum(Node *root , int dist , map<int,int> *m){
+    if(root != NULL){
+        (*m)[dist] = (*m)[dist] + root->key;
+        vertical_sum(root->left , dist-1 , m);
+        vertical_sum(root->right , dist+1,m);
+    }
+}
+
+void Vertical_sum(Node *root , int dist , map<int,int> *m){
+    vertical_sum(root,dist,m);
+    for(auto itr= (*m).begin(); itr != (*m).end() ; itr++ ){
+        cout << "Distance : " << (*itr).first << " Sum : " << (*itr).second << endl;
+    }
+
+}
+
+
+
+
 int main(){
 
 
@@ -180,11 +199,11 @@ Node *root = NULL;
 
  root = new Node(10);
  root->left = new Node(12);
- root->right = new Node(20); 
+//  root->right = new Node(20); 
 // root->right->right = new Node(24);
 // root->right->left= new Node(13);
 // root->left->left = new Node(30);
-// root->left->right = new Node(45);
+ root->left->right = new Node(45);
 // root->left->right->left = new Node(42);
 // root->left->right->right = new Node(48);
 // root->left->right->right->right = new Node(50);
@@ -192,6 +211,11 @@ Node *root = NULL;
 
 
 
-cout << check_BST(root) << endl;
+map<int , int> m;
+
+Vertical_sum(root ,0, &m);
+
+
+
 
 }
