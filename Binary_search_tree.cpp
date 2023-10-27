@@ -143,27 +143,55 @@ Node *ceil_BST( Node *root , int ele){
 }
 
 
+bool check_BST(Node *root){
+    if(root== NULL) return 1;
+    else{
+    bool tval=1;
+    if( root->left != NULL && root->left->key > root->key){
+        tval = 0;
+    }
+    if(root->right != NULL && root->right->key < root->key){
+        tval = 0;
+    }
+    
+
+    return tval * check_BST(root->left) * check_BST( root->right);}
+    
+}
+
+
 int main(){
 
 
 Node *root = NULL;
 
-root = new Node(60);
-root->left = new Node(40);
-root->right = new Node(70); 
-root->right->right = new Node(80);
-root->left->left = new Node(30);
-root->left->right = new Node(45);
-root->left->right->left = new Node(42);
-root->left->right->right = new Node(48);
-root->left->right->right->right = new Node(50);
-root->left->right->right->right->right = new Node(55);
+// root = new Node(60);
+//  root->left = new Node(40);
+//  root->right = new Node(70); 
+// root->right->right = new Node(80);
+// root->left->left = new Node(30);
+// root->left->right = new Node(45);
+// root->left->right->left = new Node(42);
+// root->left->right->right = new Node(48);
+// root->left->right->right->right = new Node(50);
+// root->left->right->right->right->right = new Node(55);
 
 
 
+ root = new Node(10);
+ root->left = new Node(12);
+ root->right = new Node(20); 
+// root->right->right = new Node(24);
+// root->right->left= new Node(13);
+// root->left->left = new Node(30);
+// root->left->right = new Node(45);
+// root->left->right->left = new Node(42);
+// root->left->right->right = new Node(48);
+// root->left->right->right->right = new Node(50);
+// root->left->right->right->right->right = new Node(55);
 
-Node *ceil = ceil_BST(root,44);
 
-cout<< ceil->key << endl;
+
+cout << check_BST(root) << endl;
 
 }
