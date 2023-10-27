@@ -177,6 +177,13 @@ void Vertical_sum(Node *root , int dist , map<int,int> *m){
 }
 
 
+void vertical_traversal(Node *root , int dist , map<int,vector<int>> *m){
+    if(root != NULL){
+        (*m)[dist].push_back(root->key);
+        vertical_traversal(root->left , dist-1 ,m);
+        vertical_traversal(root->right , dist+1,m);
+    }
+}
 
 
 int main(){
@@ -211,9 +218,13 @@ Node *root = NULL;
 
 
 
-map<int , int> m;
+map<int,vector<int>> m;
 
-Vertical_sum(root ,0, &m);
+
+vertical_traversal(root,0,&m);
+
+
+
 
 
 
